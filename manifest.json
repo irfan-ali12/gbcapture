@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Full Page Screenshot",
+  "version": "1.0.0",
+  "description": "Scrolls the current page, captures each viewport, stitches them together, and downloads a complete PNG screenshot.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads"
+  ],
+  "action": {
+    "default_title": "Full Page Screenshot",
+    "default_popup": "popup.html"
+  }
+}

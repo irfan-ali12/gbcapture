@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Full Page Screenshot</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <main class="panel">
+    <div class="top">
+      <div class="icon">↕</div>
+      <div>
+        <h1>Full Page Screenshot</h1>
+        <p>Capture the complete current page as one PNG.</p>
+      </div>
+    </div>
+
+    <button id="captureBtn">
+      <span class="camera">▣</span>
+      <span id="buttonText">Capture Full Page</span>
+    </button>
+
+    <div id="progressWrap" class="progress-wrap hidden">
+      <div class="progress-track">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+      <div class="progress-row">
+        <span id="status">Preparing…</span>
+        <span id="percent">0%</span>
+      </div>
+    </div>
+
+    <div id="message" class="message hidden"></div>
+
+    <label class="option">
+      <input id="stickyToggle" type="checkbox" checked />
+      <span>
+        <strong>Avoid repeating sticky elements</strong>
+        <small>Keeps sticky/fixed headers once instead of repeating them.</small>
+      </span>
+    </label>
+
+    <p class="footnote">Works on regular web pages. Chrome internal pages such as chrome:// cannot be captured by extensions.</p>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>
