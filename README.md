@@ -223,7 +223,7 @@ You can also install the development version directly from this repository.
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/GBCodies/gbcapture.git
+git clone https://github.com/irfan-ali12/gbcapture.git
 ```
 
 ### 2. Open Chrome Extensions
