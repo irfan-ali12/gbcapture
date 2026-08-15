@@ -3,45 +3,75 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Full Page Screenshot</title>
+  <title>ScrollCapture</title>
   <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
-  <main class="panel">
-    <div class="top">
-      <div class="icon">↕</div>
-      <div>
-        <h1>Full Page Screenshot</h1>
-        <p>Capture the complete current page as one PNG.</p>
+  <main class="app" aria-live="polite">
+    <header class="header">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M7 4h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3Z" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M12 7v10m0 0-3-3m3 3 3-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
-    </div>
-
-    <button id="captureBtn">
-      <span class="camera">▣</span>
-      <span id="buttonText">Capture Full Page</span>
-    </button>
-
-    <div id="progressWrap" class="progress-wrap hidden">
-      <div class="progress-track">
-        <div id="progressBar" class="progress-bar"></div>
+      <div class="brand-copy">
+        <div class="brand-row">
+          <h1>ScrollCapture</h1>
+          <span class="badge">v2</span>
+        </div>
+        <p>Full-page screenshots, rendered properly.</p>
       </div>
-      <div class="progress-row">
-        <span id="status">Preparing…</span>
+    </header>
+
+    <section class="card capture-card">
+      <div class="field">
+        <label for="mode">Capture mode</label>
+        <select id="mode">
+          <option value="smart" selected>Smart — recommended</option>
+          <option value="fast">Fast — simple pages</option>
+          <option value="exact">Exact — preserve fixed elements</option>
+        </select>
+        <p id="modeHelp" class="hint">Preloads the page and handles persistent overlays while preserving sticky content.</p>
+      </div>
+
+      <div class="field compact-field">
+        <label for="delay">Render delay</label>
+        <select id="delay">
+          <option value="350">Normal</option>
+          <option value="700" selected>Balanced</option>
+          <option value="1200">Extra time</option>
+        </select>
+      </div>
+
+      <button id="captureBtn" class="primary" type="button">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M7 7.5 8.5 5h7L17 7.5h1.5A2.5 2.5 0 0 1 21 10v7a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17v-7a2.5 2.5 0 0 1 2.5-2.5H7Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+          <circle cx="12" cy="13" r="3.25" stroke="currentColor" stroke-width="1.7"/>
+        </svg>
+        <span id="buttonText">Capture full page</span>
+      </button>
+
+      <button id="cancelBtn" class="secondary hidden" type="button">Cancel capture</button>
+    </section>
+
+    <section id="progressWrap" class="card progress-card hidden">
+      <div class="progress-head">
+        <span id="status">Preparing page…</span>
         <span id="percent">0%</span>
       </div>
-    </div>
+      <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+      <p id="detail" class="detail">The page will scroll automatically and return to your original position.</p>
+    </section>
 
-    <div id="message" class="message hidden"></div>
+    <div id="message" class="message hidden" role="status"></div>
 
-    <label class="option">
-      <input id="stickyToggle" type="checkbox" checked />
-      <span>
-        <strong>Avoid repeating sticky elements</strong>
-        <small>Keeps sticky/fixed headers once instead of repeating them.</small>
-      </span>
-    </label>
-
-    <p class="footnote">Works on regular web pages. Chrome internal pages such as chrome:// cannot be captured by extensions.</p>
+    <footer class="footer">
+      <span class="privacy-dot"></span>
+      <span>Runs locally. No screenshots or browsing data are uploaded.</span>
+    </footer>
   </main>
 
   <script src="popup.js"></script>
